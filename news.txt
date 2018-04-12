@@ -1,0 +1,63 @@
+$full_name =    $this->db->escape($_POST['full_name']);
+            $birthday =     $this->db->escape($_POST['birthday']);
+            $gender =       $this->db->escape($_POST['gender']);
+            $descriptions = $this->db->escape($_POST['descriptions']);
+            $address =      $this->db->escape($_POST['address']);
+            $city =         $this->db->escape($_POST['city']);
+            $provinces =    $this->db->escape($_POST['provinces']);
+            $districts =    $this->db->escape($_POST['districts']);
+            $villages =     $this->db->escape($_POST['villages']);
+
+            $sql = $this->db->query("UPDATE prf_teachers SET full_name = $full_name, birthday = $birthday, gender = $gender, descriptions = $descriptions, address = $address, city = $city, provinces = $provinces, districts = $districts, villages = $villages WHERE user_id = ". intval($user_id));
+            return true;
+
+ $id = $this->input->post('id_teachers');
+            $id1 = $this->input->post('id');
+            $id2 = $this->input->post('radius_id');
+
+            $data = array(
+                'user_id' => $this->input->post('user_id'),
+                'full_name' => $this->input->post('full_name'),
+                'birthday' => $this->input->post('birthday'),
+                'gender' => $this->input->post('gender'),
+                'descriptions' => $this->input->post('descriptions'),
+                'address' => $this->input->post('address'),
+                'city' => $this->input->post('city'),
+                'provinces' => $this->input->post('provinces'),
+                'districts' => $this->input->post('districts'),
+                'villages' => $this->input->post('villages')
+                
+                );
+
+            $data1 = array(
+                'primary_school' => $this->input->post('primary_school'),
+                'junior_high_school' => $this->input->post('junior_high_school'),
+                'senior_high_school' => $this->input->post('senior_high_school'),
+                'diploma' => $this->input->post('diploma'),
+                's1' => $this->input->post('s1'),
+                's2' => $this->input->post('s2'),
+                's3' => $this->input->post('s3')
+                );
+
+            $data2 = array(
+                'city' => $this->input->post('city'),
+                'district' => $this->input->post('district')
+                );
+
+            public function update($data, $data1, $data2, $id, $id1, $id2)
+            {   
+                $this->db->set($data);
+                $this->db->where('id_teachers', $id);
+                $this->db->update('prf_teachers');
+
+                $this->db->set($data1);
+                $this->db->where('id', $id1);
+                $this->db->update('education_background');
+
+                $this->db->set($data2);
+                $this->db->where('radius_id', $id2);
+                $this->db->update('radius_locations');
+            }
+
+*User
+           $userInfo = array('isDeleted'=>1,'updatedBy'=>$this->vendorId, 'updatedDtm'=>date('Y-m-d H:i:sa'));
